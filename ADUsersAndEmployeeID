@@ -1,0 +1,1 @@
+Get-ADUser -Filter 'ObjectClass -eq "user" -and Enabled -eq "True"' -properties employeeID | Select SamAccountName,SurName,GivenName,employeeID,Enabled,@{n='ParentContainer';e={$_.distinguishedname -replace '^.+?,(OU.+)','$1'}} | Export-CSV "ADUsrsAndEmpID.csv" -NoType
